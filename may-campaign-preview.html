@@ -468,6 +468,8 @@
       left: 0;
       right: 0;
       bottom: 0;
+      display: flex;
+      justify-content: center;
       padding: 8px 12px 12px;
       border-top: 1px solid rgba(215, 195, 165, .62);
       background: rgba(255, 250, 240, .78);
@@ -483,7 +485,7 @@
     }
 
     .bottom-cta {
-      width: min(100%, 430px);
+      width: min(100% - 24px, 430px);
       margin: 0 auto;
       transition: background-color .18s ease, color .18s ease;
     }
