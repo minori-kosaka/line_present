@@ -148,12 +148,16 @@
     h1 {
       position: relative;
       z-index: 1;
-      display: inline;
-      font-size: clamp(42px, 13vw, 58px);
-      line-height: 1.08;
+      display: inline-block;
+      font-size: clamp(32px, 9vw, 52px);
+      line-height: 1.18;
       background: linear-gradient(transparent 70%, rgba(216, 177, 96, .56) 70%);
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
+    }
+
+    .no-break {
+      white-space: nowrap;
     }
 
     .hero-copy {
@@ -462,7 +466,7 @@
       color: var(--navy);
       text-align: center;
       font-family: inherit;
-      font-size: 23px;
+      font-size: 21px;
       font-weight: 700;
       line-height: 1.55;
       text-shadow:
@@ -547,7 +551,7 @@
   <main class="page">
     <header class="hero">
       <p class="eyebrow">公式LINE 感想プレゼント企画</p>
-      <h1>特典ダウンロード<br>100件突破記念</h1>
+      <h1><span class="no-break">特典ダウンロード</span><br><span class="no-break">100件突破記念</span></h1>
       <p class="hero-copy">Noteの感想を送ってくださった方へ、抽選プレゼントをご用意しています。</p>
       <div class="deadline">応募締切：5月20日(水) 23:59まで</div>
     </header>
