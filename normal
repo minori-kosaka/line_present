@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>特典ダウンロード100件突破記念 | 感想プレゼント企画</title>
+  <meta name="description" content="特典ダウンロード100件突破を記念した、公式LINEでの感想プレゼント企画です。">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <style>
+    :root {
+      --bg: #f8edda;
+      --paper: #fffaf0;
+      --paper-2: #f2e6d3;
+      --ink: #2f261f;
+      --muted: #786a5b;
+      --navy: #20375c;
+      --green: #52664a;
+      --line: #d7c3a5;
+      --gold: #d8b160;
+      --accent: #a66f4f;
+      --shadow: 0 14px 34px rgba(78, 52, 28, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 58px 0 42px;
+      color: var(--ink);
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", "YuMincho", "Noto Serif JP", serif;
+      line-height: 1.8;
+      letter-spacing: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 247, 233, .55), rgba(248, 237, 218, .66)),
+        url("assets/study-room-bg.png") center top / cover fixed no-repeat;
+      font-feature-settings: "palt";
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 8px 14px;
+      background: rgba(255, 250, 240, .78);
+      border-bottom: 1px solid rgba(215, 195, 165, .62);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 16px rgba(78, 52, 28, .06);
+    }
+
+    .countdown {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 32px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(255, 250, 240, .74);
+      color: var(--green);
+      border: 0;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+      transition: background-color .18s ease, color .18s ease;
+    }
+
+    .countdown:hover {
+      background: rgba(255, 250, 240, .74);
+      color: var(--green);
+    }
+
+    .countdown .digit {
+      display: inline-block;
+      margin: 0 3px;
+      color: var(--green);
+      font-family: "Courier New", Consolas, monospace;
+      font-size: 15px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+      text-shadow: none;
+    }
+
+    .page {
+      width: min(100% - 34px, 500px);
+      margin: 0 auto;
+    }
+
+    .hero,
+    .section {
+      border: 1px solid rgba(215, 195, 165, .9);
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .76), rgba(255, 250, 240, .60));
+      box-shadow: 0 14px 34px rgba(78, 52, 28, .10);
+      backdrop-filter: blur(3px);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 0;
+      padding: 30px 18px 32px;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: none;
+    }
+
+    .eyebrow {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 12px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      color: var(--navy);
+      font-family: inherit;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      font-size: clamp(32px, 9vw, 52px);
+      line-height: 1.18;
+      background: linear-gradient(transparent 70%, rgba(216, 177, 96, .56) 70%);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+
+    .no-break {
+      white-space: nowrap;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .deadline {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      margin-top: 24px;
+      padding: 8px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fffdf8;
+      color: var(--accent);
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .section {
+      margin-top: 22px;
+      padding: 30px 18px;
+    }
+
+    .section:nth-of-type(even) {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .72), rgba(246, 238, 224, .58));
+    }
+
+    .gift-section {
+      border: 3px solid rgba(216, 177, 96, .72);
+      background:
+        linear-gradient(180deg, rgba(255, 253, 246, .84), rgba(251, 235, 205, .66));
+      box-shadow:
+        0 16px 38px rgba(216, 177, 96, .14),
+        0 12px 30px rgba(78, 52, 28, .08);
+    }
+
+    .section-label {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .section-label span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      min-height: 28px;
+      padding: 3px 12px;
+      border-radius: 999px;
+      background: var(--green);
+      color: #fffaf0;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: clamp(25px, 8vw, 34px);
+      line-height: 1.28;
+    }
+
+    .lead {
+      margin: 18px 0 0;
+      color: var(--ink);
+      font-size: 16px;
+    }
+
+    .list,
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li,
+    .steps li {
+      position: relative;
+      padding: 5px 0 5px 28px;
+      border-radius: 0;
+      background: transparent;
+      line-height: 1.65;
+    }
+
+    .list li::before,
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 1.35em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .steps {
+      counter-reset: step;
+    }
+
+    .steps li {
+      counter-increment: step;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fffaf0;
+      font-size: 11px;
+      font-weight: 700;
+      transform: translateY(-50%);
+    }
+
+    .free-box {
+      margin-top: 18px;
+      padding: 22px 16px;
+      border: 2px solid rgba(82, 102, 74, .36);
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(255, 254, 249, .66), rgba(238, 245, 231, .48));
+      text-align: center;
+    }
+
+    .free-box strong {
+      display: inline;
+      color: var(--green);
+      font-family: inherit;
+      font-size: 22px;
+      line-height: 1.38;
+      background: linear-gradient(transparent 64%, rgba(216, 177, 96, .52) 64%);
+    }
+
+    .free-box p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .gift-grid,
+    .period-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .gift,
+    .period {
+      padding: 18px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .54);
+      border: 1px solid rgba(215, 195, 165, .65);
+    }
+
+    .gift {
+      position: relative;
+      text-align: center;
+      border: 1px solid rgba(216, 177, 96, .65);
+      background: rgba(255, 255, 255, .58);
+      box-shadow: none;
+    }
+
+    .period {
+      background: rgba(255, 255, 255, .62);
+      border-color: rgba(215, 195, 165, .58);
+    }
+
+    .gift strong,
+    .period strong {
+      display: block;
+      color: var(--navy);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .gift span,
+    .period span {
+      display: inline-flex;
+      margin-top: 8px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: rgba(216, 177, 96, .22);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin: 16px 0 0;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      color: #66594d;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .caution {
+      margin-top: 22px;
+      padding: 22px 18px;
+      border-radius: 20px;
+      background: rgba(255, 250, 240, .72);
+      border: 1px solid rgba(215, 195, 165, .62);
+    }
+
+    .caution h2 {
+      font-size: 22px;
+    }
+
+    .caution .section-label {
+      display: none;
+    }
+
+    .caution .list {
+      gap: 8px;
+    }
+
+    .caution .list li {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      background: transparent;
+      font-size: 14px;
+    }
+
+    .caution .small-note {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .caution .small-note + .small-note {
+      margin-top: 6px;
+    }
+
+    .cta-section {
+      margin-top: 24px;
+      padding: 30px 18px;
+      border: 3px solid rgba(82, 102, 74, .5);
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .80), rgba(238, 245, 231, .68));
+      box-shadow: 0 16px 38px rgba(78, 52, 28, .12);
+      backdrop-filter: blur(3px);
+      text-align: center;
+    }
+
+    .cta-section .section-label {
+      display: none;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(28px, 8vw, 38px);
+    }
+
+    .button-row {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .button,
+    .bottom-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .button.primary,
+    .bottom-cta {
+      background: var(--green);
+      color: #fffaf0;
+      box-shadow: 0 12px 24px rgba(82, 102, 74, .22);
+    }
+
+    .button.secondary {
+      background: #fffdf8;
+      color: var(--green);
+      border: 1px solid rgba(82, 102, 74, .35);
+    }
+
+    .closing {
+      padding: 28px 12px 6px;
+      color: var(--navy);
+      text-align: center;
+      font-family: inherit;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.55;
+      text-shadow:
+        -1px -1px 0 rgba(255, 250, 240, .92),
+        1px -1px 0 rgba(255, 250, 240, .92),
+        -1px 1px 0 rgba(255, 250, 240, .92),
+        1px 1px 0 rgba(255, 250, 240, .92),
+        0 2px 8px rgba(255, 250, 240, .88);
+    }
+
+    .fixed-footer {
+      position: fixed;
+      z-index: 20;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      padding: 8px 12px 12px;
+      border-top: 1px solid rgba(215, 195, 165, .62);
+      background: rgba(255, 250, 240, .78);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 -6px 16px rgba(78, 52, 28, .06);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .fixed-footer.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(14px);
+    }
+
+    .bottom-cta {
+      width: min(100% - 24px, 430px);
+      margin: 0 auto;
+      transition: background-color .18s ease, color .18s ease;
+    }
+
+    .bottom-cta:hover {
+      background: #fffaf0;
+      color: var(--green);
+      border: 1px solid rgba(82, 102, 74, .35);
+    }
+
+    @media (min-width: 760px) {
+      body {
+        padding-top: 66px;
+      }
+
+      .topbar {
+        min-height: 54px;
+      }
+
+      .page {
+        width: min(100% - 80px, 760px);
+      }
+
+      .hero {
+        padding: 42px 44px;
+      }
+
+      .section {
+        padding: 38px 48px;
+      }
+
+      .gift-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .period-grid,
+      .button-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="countdown" id="countdown">応募締切まで計算中</div>
+  </div>
+
+  <main class="page">
+    <header class="hero">
+      <p class="eyebrow">公式LINE 感想プレゼント企画</p>
+      <h1><span class="no-break">特典ダウンロード</span><br><span class="no-break">100件突破記念</span></h1>
+      <p class="hero-copy">Noteの感想を送ってくださった方へ、抽選プレゼントをご用意しています。</p>
+      <div class="deadline">応募締切：5月20日(水) 23:59まで</div>
+    </header>
+
+    <section class="section">
+      <div class="section-label"><span>01</span></div>
+      <h2>企画概要</h2>
+      <p class="lead">Noteを読んで感想を送ってくださった方へ、抽選プレゼントをご用意しました。</p>
+      <ul class="list">
+        <li>応募は公式LINEへ感想を送るだけ</li>
+        <li>応募者全員に無料プレゼントあり</li>
+        <li>当選プレゼントは選べません</li>
+      </ul>
+      <div class="free-box">
+        <strong>応募者全員に<br>まとめ画像をプレゼント</strong>
+        <p>過去Noteの要点をまとめた画像をお送りします。<br>約5〜10枚程度を予定しております。</p>
+      </div>
+    </section>
+
+    <section class="section gift-section">
+      <div class="section-label"><span>02</span></div>
+      <h2>当選者プレゼント</h2>
+      <div class="gift-grid">
+        <div class="gift">
+          <strong>演奏動画へのワンポイントアドバイス</strong>
+          <span>2名</span>
+        </div>
+        <div class="gift">
+          <strong>1か月 有料Note読み放題</strong>
+          <span>5名</span>
+        </div>
+        <div class="gift">
+          <strong>ポジション表 完全版</strong>
+          <span>10名</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label"><span>03</span></div>
+      <h2>応募期間</h2>
+      <div class="period-grid">
+        <div class="period">
+          <strong>応募期間</strong>
+          <span>5月18日(月)〜5月20日(水) 23:59</span>
+        </div>
+        <div class="period">
+          <strong>当選連絡</strong>
+          <span>5月22日(金)までにLINEでご連絡</span>
+        </div>
+      </div>
+      <p class="note">※当選者の方のみご連絡します。プレゼントも同じ時期にお送りします。</p>
+    </section>
+
+    <section class="section">
+      <div class="section-label"><span>04</span></div>
+      <h2>応募方法</h2>
+      <ol class="steps">
+        <li>Noteの記事を1つ以上読む</li>
+        <li>感想を書く</li>
+        <li>公式LINEのチャットへ送る</li>
+      </ol>
+      <p class="note">一言だけの短い感想ではなく、読んで感じたことを少し具体的に送ってください。返信はできませんが、送っていただいた感想は読ませていただきます。</p>
+    </section>
+
+    <section class="section caution">
+      <div class="section-label"><span>05</span></div>
+      <h2>注意事項</h2>
+      <ul class="list">
+        <li>応募内容は手動で確認するため、確認までお時間をいただく場合があります。</li>
+        <li>当選プレゼントの種類は選べません。</li>
+        <li>公式LINEへの個別返信は行いません。</li>
+      </ul>
+      <p class="small-note">※当選者の方のみご連絡します。</p>
+      <p class="small-note">※お送りいただいた感想は、個人が特定されない形に加工したうえで、SNSやWebサイト等で紹介させていただく場合があります。</p>
+    </section>
+
+    <section class="cta-section">
+      <div class="section-label"><span>06</span></div>
+      <h2>参加する</h2>
+      <p class="lead">記事を読んだら、感想を公式LINEへ送ってください。</p>
+      <div class="button-row">
+        <a class="button primary" href="https://note.com/minori_kosaka/all" target="_blank" rel="noopener">今月の記事を見る</a>
+        <a class="button secondary" href="https://lin.ee/OKfP1HE" target="_blank" rel="noopener">公式LINEへ送る</a>
+      </div>
+    </section>
+
+    <footer class="closing">
+      100件突破、ありがとうございます。
+    </footer>
+  </main>
+
+  <div class="fixed-footer" id="fixedFooter">
+    <a class="bottom-cta" href="https://note.com/minori_kosaka/all" target="_blank" rel="noopener">今月の記事を見る</a>
+  </div>
+
+  <script>
+    (() => {
+      const el = document.getElementById("countdown");
+      const deadline = new Date("2026-05-20T23:59:59+09:00");
+      const fixedFooter = document.getElementById("fixedFooter");
+      const ctaSection = document.querySelector(".cta-section");
+
+      const render = () => {
+        const diff = deadline.getTime() - Date.now();
+        if (diff <= 0) {
+          el.textContent = "締め切りました";
+          return;
+        }
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const d = (value) => `<span class="digit">${value}</span>`;
+
+        if (days > 0) {
+          el.innerHTML = `応募締切まで ${d(days)}日 ${d(hours)}時間 ${d(minutes)}分 ${d(seconds)}秒`;
+        } else if (hours > 0) {
+          el.innerHTML = `応募締切まで ${d(hours)}時間 ${d(minutes)}分 ${d(seconds)}秒`;
+        } else {
+          el.innerHTML = `応募締切まで ${d(minutes)}分 ${d(seconds)}秒`;
+        }
+      };
+
+      render();
+      setInterval(render, 1000);
+
+      if (fixedFooter && ctaSection && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          fixedFooter.classList.toggle("is-hidden", entries[0].isIntersecting);
+        }, { threshold: 0.25 });
+        observer.observe(ctaSection);
+      }
+    })();
+  </script>
+</body>
+</html>
