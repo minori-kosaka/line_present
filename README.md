@@ -1,6 +1,6 @@
 # line_present
 
-5月の企画ページです。
+LINEのプレゼント企画ページです。
 
 ## Publish
 
