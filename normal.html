@@ -100,6 +100,11 @@
       text-shadow: none;
     }
 
+    body.is-closed .countdown {
+      background: rgba(47, 38, 31, .08);
+      color: var(--muted);
+    }
+
     .page {
       width: min(100% - 34px, 500px);
       margin: 0 auto;
@@ -461,6 +466,40 @@
       border: 1px solid rgba(82, 102, 74, .35);
     }
 
+    .closed-message {
+      display: none;
+      margin: 18px 0 0;
+      padding: 16px 14px;
+      border: 1px solid rgba(166, 111, 79, .24);
+      border-radius: 16px;
+      background: rgba(255, 253, 248, .72);
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.75;
+      text-align: left;
+    }
+
+    body.is-closed .cta-section {
+      border-color: rgba(120, 106, 91, .34);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(245, 239, 229, .72));
+    }
+
+    body.is-closed .closed-message {
+      display: block;
+    }
+
+    body.is-closed .campaign-only {
+      display: none;
+    }
+
+    body.is-closed .button-row {
+      grid-template-columns: 1fr;
+    }
+
+    body.is-closed .bottom-cta {
+      display: none;
+    }
+
     .closing {
       padding: 28px 12px 6px;
       color: var(--navy);
@@ -553,7 +592,7 @@
       <p class="eyebrow">公式LINE 感想プレゼント企画</p>
       <h1><span class="no-break">特典ダウンロード</span><br><span class="no-break">100件突破記念</span></h1>
       <p class="hero-copy">Noteの感想を送ってくださった方へ、抽選プレゼントをご用意しています。</p>
-      <div class="deadline">応募締切：5月20日(水) 23:59まで</div>
+      <div class="deadline">応募締切：6月3日(水) 23:59まで</div>
     </header>
 
     <section class="section">
@@ -596,7 +635,7 @@
       <div class="period-grid">
         <div class="period">
           <strong>応募期間</strong>
-          <span>5月18日(月)〜5月20日(水) 23:59</span>
+          <span>5月18日(月)〜6月3日(水) 23:59</span>
         </div>
         <div class="period">
           <strong>当選連絡</strong>
@@ -633,9 +672,10 @@
       <div class="section-label"><span>06</span></div>
       <h2>参加する</h2>
       <p class="lead">記事を読んだら、感想を公式LINEへ送ってください。</p>
+      <p class="closed-message">今回の受付は終了しました。たくさんのご参加ありがとうございました。記事は引き続きご覧いただけますが、抽選プレゼントの対象にはなりません。</p>
       <div class="button-row">
         <a class="button primary" href="https://note.com/minori_kosaka/all" target="_blank" rel="noopener">今月の記事を見る</a>
-        <a class="button secondary" href="https://lin.ee/OKfP1HE" target="_blank" rel="noopener">公式LINEへ送る</a>
+        <a class="button secondary campaign-only" href="https://lin.ee/OKfP1HE" target="_blank" rel="noopener">公式LINEへ送る</a>
       </div>
     </section>
 
@@ -651,16 +691,25 @@
   <script>
     (() => {
       const el = document.getElementById("countdown");
-      const deadline = new Date("2026-05-20T23:59:59+09:00");
+      const deadline = new Date("2026-06-03T23:59:59+09:00");
       const fixedFooter = document.getElementById("fixedFooter");
       const ctaSection = document.querySelector(".cta-section");
+      const ctaTitle = ctaSection ? ctaSection.querySelector("h2") : null;
+      const ctaLead = ctaSection ? ctaSection.querySelector(".lead") : null;
+      const previewClosed = new URLSearchParams(location.search).get("state") === "closed";
 
       const render = () => {
-        const diff = deadline.getTime() - Date.now();
+        const diff = previewClosed ? 0 : deadline.getTime() - Date.now();
         if (diff <= 0) {
           el.textContent = "締め切りました";
+          document.body.classList.add("is-closed");
+          if (ctaTitle) ctaTitle.textContent = "受付は終了しました";
+          if (ctaLead) ctaLead.textContent = "今回のキャンペーン応募は締め切りました。";
+          if (fixedFooter) fixedFooter.classList.add("is-hidden");
           return;
         }
+
+        document.body.classList.remove("is-closed");
 
         const totalSeconds = Math.floor(diff / 1000);
         const days = Math.floor(totalSeconds / 86400);
