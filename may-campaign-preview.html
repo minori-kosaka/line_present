@@ -358,6 +358,16 @@
       line-height: 1.7;
     }
 
+    .article-hook {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-left: 3px solid rgba(216, 177, 96, .86);
+      background: rgba(255, 250, 240, .68);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
     .share-box {
       margin-top: 18px;
       padding: 18px 16px;
@@ -381,6 +391,51 @@
       font-size: 14px;
       line-height: 1.7;
       text-align: left;
+    }
+
+    .share-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .share-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 10px 16px;
+      border: 1px solid rgba(82, 102, 74, .35);
+      border-radius: 999px;
+      color: var(--green);
+      background: rgba(255, 253, 248, .86);
+      font: inherit;
+      font-weight: 700;
+      line-height: 1.35;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+    }
+
+    .share-action.primary {
+      border-color: transparent;
+      background: #06c755;
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(6, 199, 85, .18);
+    }
+
+    .share-action:hover {
+      background: var(--green);
+      color: #fffaf0;
+    }
+
+    .share-message {
+      min-height: 20px;
+      margin: 8px 0 0;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
     }
 
     .period {
@@ -568,7 +623,8 @@
       }
 
       .period-grid,
-      .button-row {
+      .button-row,
+      .share-actions {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
@@ -607,6 +663,7 @@
           <div>
             <strong>有料Note記事を無料でプレゼント</strong>
             <p>「コンクールで差がつくpの表現｜音量を下げることと、息が細くなりすぎることは違う」を、当選者の方へ無料でお送りします。</p>
+            <div class="article-hook">小さく吹こうとするたびにフレーズが死んでしまう人へ。pでも音楽の流れを止めず、ホールの奥まで意図を届けるための考え方をまとめた記事です。</div>
             <span>当選者限定</span>
           </div>
         </div>
@@ -614,6 +671,11 @@
       <div class="share-box">
         <strong>5人に1人がもらえる！</strong>
         <p>当選確率は応募者数の20％です。部活やサークル、楽団仲間にシェアして応募者数が増えると、当選者数も増えます。団内でシェアしてもOKです。</p>
+        <div class="share-actions" aria-label="企画をシェア">
+          <a class="share-action primary" id="lineShare" href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fminori-kosaka.github.io%2Fline_present%2Fmay-campaign-preview.html" target="_blank" rel="noopener">LINEでシェア</a>
+          <button class="share-action" id="copyShare" type="button">リンクをコピー</button>
+        </div>
+        <p class="share-message" id="shareMessage" aria-live="polite"></p>
       </div>
     </section>
 
@@ -637,7 +699,7 @@
       <div class="section-label"><span>04</span></div>
       <h2>応募方法</h2>
       <ol class="steps">
-        <li>Noteの記事を1つ以上読む</li>
+        <li>気になるNoteの記事を1つ以上読む</li>
         <li>感想を書く</li>
         <li>公式LINEのチャットへ送る</li>
       </ol>
@@ -660,7 +722,7 @@
       <h2>参加する</h2>
       <p class="lead">記事を読んだら、感想を公式LINEへ送ってください。</p>
       <div class="button-row">
-        <a class="button primary" href="https://note.com/minori_kosaka/all" target="_blank" rel="noopener">今月の記事を見る</a>
+        <a class="button primary" href="https://note.com/minori_kosaka/all" target="_blank" rel="noopener">Noteを読んで応募する</a>
         <a class="button secondary" href="https://lin.ee/OKfP1HE" target="_blank" rel="noopener">公式LINEへ送る</a>
       </div>
     </section>
@@ -671,7 +733,7 @@
   </main>
 
   <div class="fixed-footer" id="fixedFooter">
-    <a class="bottom-cta" href="https://note.com/minori_kosaka/all" target="_blank" rel="noopener">今月の記事を見る</a>
+    <a class="bottom-cta" href="https://note.com/minori_kosaka/all" target="_blank" rel="noopener">Noteを読んで応募する</a>
   </div>
 
   <script>
@@ -680,6 +742,11 @@
       const deadline = new Date("2026-06-20T23:59:59+09:00");
       const fixedFooter = document.getElementById("fixedFooter");
       const ctaSection = document.querySelector(".cta-section");
+      const campaignUrl = "https://minori-kosaka.github.io/line_present/may-campaign-preview.html";
+      const shareText = "トロンボーン向けのNote感想プレゼント企画です。5人に1人が有料Note記事を無料でもらえるそうです。";
+      const lineShare = document.getElementById("lineShare");
+      const copyShare = document.getElementById("copyShare");
+      const shareMessage = document.getElementById("shareMessage");
 
       const render = () => {
         const diff = deadline.getTime() - Date.now();
@@ -712,6 +779,34 @@
           fixedFooter.classList.toggle("is-hidden", entries[0].isIntersecting);
         }, { threshold: 0.25 });
         observer.observe(ctaSection);
+      }
+
+      if (lineShare) {
+        lineShare.href = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(campaignUrl)}&text=${encodeURIComponent(shareText)}`;
+      }
+
+      if (copyShare && shareMessage) {
+        copyShare.addEventListener("click", async () => {
+          const copyText = `${shareText}\n${campaignUrl}`;
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(copyText);
+            } else {
+              const textarea = document.createElement("textarea");
+              textarea.value = copyText;
+              textarea.setAttribute("readonly", "");
+              textarea.style.position = "fixed";
+              textarea.style.left = "-9999px";
+              document.body.appendChild(textarea);
+              textarea.select();
+              document.execCommand("copy");
+              document.body.removeChild(textarea);
+            }
+            shareMessage.textContent = "シェア文とリンクをコピーしました";
+          } catch (_) {
+            shareMessage.textContent = campaignUrl;
+          }
+        });
       }
     })();
   </script>
