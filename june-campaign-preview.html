@@ -156,6 +156,10 @@
       -webkit-box-decoration-break: clone;
     }
 
+    h1 span {
+      display: inline;
+    }
+
     .hero-copy {
       position: relative;
       z-index: 1;
@@ -628,6 +632,12 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
+
+    @media (max-width: 480px) {
+      h1 span {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
@@ -638,9 +648,9 @@
   <main class="page">
     <header class="hero">
       <p class="eyebrow">LINE登録者の皆様へ、限定のご案内</p>
-      <h1>プレゼントキャンペーン</h1>
+      <h1><span>プレゼント</span><span>キャンペーン</span></h1>
       <p class="hero-copy">有料Noteを無料プレゼント<br>感想を送るだけで応募OK。5人に1人に当たります。</p>
-      <div class="deadline">応募締切：6月21日(日) 23:59まで</div>
+      <div class="deadline">応募締切：6月24日(水) 23:59まで</div>
     </header>
 
     <section class="section">
@@ -685,7 +695,7 @@
       <div class="period-grid">
         <div class="period">
           <strong>応募締切</strong>
-          <span>6月21日(日) 23:59まで</span>
+          <span>6月24日(水) 23:59まで</span>
         </div>
         <div class="period">
           <strong>当選連絡</strong>
@@ -728,7 +738,7 @@
     </section>
 
     <footer class="closing">
-      6月21日(日) 23:59まで受付中です。
+      6月24日(水) 23:59まで受付中です。
     </footer>
   </main>
 
@@ -739,7 +749,7 @@
   <script>
     (() => {
       const el = document.getElementById("countdown");
-      const deadline = new Date("2026-06-21T23:59:59+09:00");
+      const deadline = new Date("2026-06-24T23:59:59+09:00");
       const fixedFooter = document.getElementById("fixedFooter");
       const ctaSection = document.querySelector(".cta-section");
       const campaignUrl = "https://minori-kosaka.github.io/line_present/june-campaign-preview.html";
